@@ -40,6 +40,16 @@ def book_room(request):
         )
         booking.save()
 
-        return redirect('book:registration_list')
+        price_choice = RoomPrice.PRICE_CHOICE
+        if price_choice == price_choice[0]:
+            return price_choice[0]
+        elif price_choice == price_choice[1]:
+            return price_choice[1]
+        elif price_choice == price_choice[2]:
+            return price_choice[2]
+        elif price_choice == price_choice[3]:
+            return price_choice[3]
 
+        return redirect('book:registration_list')      
+        
     return render(request, 'book/book_room.html', {'hotel_choices': hotel_choices, 'place_choices': place_choices,'room_choices': room_choices, 'price_choices': price_choices})

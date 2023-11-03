@@ -66,7 +66,23 @@ class RoomPrice(models.Model):
         (PRESIDENTAL_PRICE, '850$'),
     ]
 
+    # def choice():
+    #     # for i in RoomPrice.PRICE_CHOICE:
+    #     price_choice = RoomPrice.PRICE_CHOICE
+    #     if price_choice == price_choice[0]:
+    #         return price_choice[0]
+    #     elif price_choice == price_choice[1]:
+    #         return price_choice[1]
+    #     elif price_choice == price_choice[2]:
+    #         return price_choice[2]
+    #     elif price_choice == price_choice[3]:
+    #         return price_choice[3]
+    #     else:
+    #         return None
+
+
     room_price = models.CharField(max_length=50, choices=PRICE_CHOICE, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
     def __str__(self):
         return self.get_room_price_display()
