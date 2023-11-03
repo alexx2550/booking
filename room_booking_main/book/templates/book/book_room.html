@@ -35,9 +35,14 @@
         <input type="text" name="name" required><br><br>
         <label style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;" for="surname">Last name:</label>
         <input type="text" name="surname" required><br><br>
-        
         <label style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;" for="phone_number">Phone Number:</label>
         <input type="text" name="phone_number" required><br><br>
+        <label style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;" for="room_price">Room price:</label>
+        <select name="room_price" required>
+            {% for price in price_choices %}
+                <option value="{{ price.id }}">{{ price.room_price }}</option>
+            {% endfor %}
+        </select><br>
         
         <br><input type="submit" value="Book Room" style="font-size: 120%; font-family: Arial, Helvetica, sans-serif; background-color: white;">
     </form>

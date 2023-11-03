@@ -53,10 +53,10 @@ class Rooms(models.Model):
 
 
 class RoomPrice(models.Model):
-    SINGLE_PRICE = '180'
-    DOUBLE_PRICE = '300'
-    DELUXE_PRICE = '500'
-    PRESIDENTAL_PRICE = '850'
+    SINGLE_PRICE = '180$'
+    DOUBLE_PRICE = '300$'
+    DELUXE_PRICE = '500$'
+    PRESIDENTAL_PRICE = '850$'
 
     PRICE_CHOICE = [
         (SINGLE_PRICE, '180$'),

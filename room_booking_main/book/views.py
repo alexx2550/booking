@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Booking, Rooms, Hotel, Place
+from .models import Booking, Rooms, Hotel, Place, RoomPrice
 
 def registration_list(request):
     bookings = Booking.objects.all()
@@ -13,6 +13,7 @@ def book_room(request):
     room_choices = Rooms.objects.all()
     hotel_choices = Hotel.objects.all()
     place_choices = Place.objects.all()
+    price_choices = RoomPrice.objects.all()
     if request.method == 'POST':
         name = request.POST.get('name')
         surname = request.POST.get('surname')
@@ -22,6 +23,7 @@ def book_room(request):
         room_type_id = request.POST.get('room_type')
         place_id = request.POST.get('place')
         hotel_id = request.POST.get('hotel')
+        room_price_id = request.POST.get('room_price')
 
 
         booking = Booking(
@@ -34,9 +36,10 @@ def book_room(request):
             room_type_id=room_type_id,
             place_id=place_id,
             hotel_id=hotel_id,
+            room_price_id=room_price_id,
         )
         booking.save()
 
         return redirect('book:registration_list')
 
-    return render(request, 'book/book_room.html', {'hotel_choices': hotel_choices, 'place_choices': place_choices,'room_choices': room_choices})
+    return render(request, 'book/book_room.html', {'hotel_choices': hotel_choices, 'place_choices': place_choices,'room_choices': room_choices, 'price_choices': price_choices})
