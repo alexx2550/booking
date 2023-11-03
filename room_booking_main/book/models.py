@@ -52,6 +52,25 @@ class Rooms(models.Model):
         return self.get_room_type_display()
 
 
+class RoomPrice(models.Model):
+    SINGLE_PRICE = '180'
+    DOUBLE_PRICE = '300'
+    DELUXE_PRICE = '500'
+    PRESIDENTAL_PRICE = '850'
+
+    PRICE_CHOICE = [
+        (SINGLE_PRICE, '180$'),
+        (DOUBLE_PRICE, '300$'),
+        (DELUXE_PRICE, '500$'),
+        (PRESIDENTAL_PRICE, '850$'),
+    ]
+
+    room_price = models.CharField(max_length=50, choices=PRICE_CHOICE, null=True)
+
+    def __str__(self):
+        return self.get_room_price_display()
+
+
 class Booking(models.Model):
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
@@ -61,6 +80,7 @@ class Booking(models.Model):
     room_type = models.ForeignKey(Rooms, on_delete=models.CASCADE)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, null=True)
     place = models.ForeignKey(Place, on_delete=models.CASCADE, null=True)
+    room_price = models.ForeignKey(RoomPrice, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f'{self.name} {self.surname}'
