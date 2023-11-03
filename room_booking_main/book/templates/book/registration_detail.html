@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Details</title>
+</head>
+<body style="background-color: powderblue;">
+    <h1 style="font-family: 'Courier New', Courier, monospace; text-align: center; font-size: 230%;">Booking Details</h1><br>
+    <hr>
+    <p style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;"><strong>Place:</strong> {{ booking.place.place }}</p>
+    <p style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;"><strong>Hotel:</strong> {{ booking.hotel.hotel }}</p>
+    <p style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;"><strong>Room Type:</strong> {{ booking.room_type.room_type }}</p>
+    <p style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;"><strong>Check-in Date:</strong> {{ booking.check_in|date:"d-m-Y" }}</p>
+    <p style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;"><strong>Check-out Date:</strong> {{ booking.check_out|date:"d-m-Y" }}</p>
+    <hr>
+    <p style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;"><strong>First and last name:</strong> {{ booking.name }} {{ booking.surname }}</p>
+    <p style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;"><strong>Phone Number:</strong> {{ booking.phone_number }}</p>
+    <hr><br>
+    <a style="color: rgb(247, 0, 0); font-size: 150%;" href="{% url 'book:registration_list' %}">Back to Booking List</a>
+</body>
+</html>
