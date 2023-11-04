@@ -14,4 +14,3 @@ class HotelAdmin(admin.ModelAdmin):
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
     list_display = ('place',)
-    

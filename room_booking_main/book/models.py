@@ -31,7 +31,7 @@ class Place(models.Model):
 
     def __str__(self):
         return self.get_place_display()
-    
+   
 
 class Rooms(models.Model):
     SINGLE = 'Single'
@@ -51,6 +51,15 @@ class Rooms(models.Model):
     def __str__(self):
         return self.get_room_type_display()
 
+    def get_room_price(self):
+        room_prices = {
+            Rooms.SINGLE: 150,
+            Rooms.DOUBLE: 280,
+            Rooms.DELUXE: 400,
+            Rooms.PRESIDENTIAL: 750,
+        }
+        return room_prices.get(self.room_type, 0)
+    
 
 class Booking(models.Model):
     name = models.CharField(max_length=100)
@@ -61,6 +70,7 @@ class Booking(models.Model):
     room_type = models.ForeignKey(Rooms, on_delete=models.CASCADE)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, null=True)
     place = models.ForeignKey(Place, on_delete=models.CASCADE, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0)  
 
     def __str__(self):
         return f'{self.name} {self.surname}'

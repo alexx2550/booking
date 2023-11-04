@@ -23,6 +23,8 @@ def book_room(request):
         place_id = request.POST.get('place')
         hotel_id = request.POST.get('hotel')
 
+        selected_room = get_object_or_404(Rooms, pk=room_type_id)
+        room_price = selected_room.get_room_price()
 
         booking = Booking(
             
@@ -34,9 +36,11 @@ def book_room(request):
             room_type_id=room_type_id,
             place_id=place_id,
             hotel_id=hotel_id,
+            price=room_price,
         )
         booking.save()
 
-        return redirect('book:registration_list')
 
+        return redirect('book:registration_list')      
+        
     return render(request, 'book/book_room.html', {'hotel_choices': hotel_choices, 'place_choices': place_choices,'room_choices': room_choices})
