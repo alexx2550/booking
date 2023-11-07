@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Booking, Rooms, Hotel, Place
+from datetime import datetime
+
 
 def registration_list(request):
     bookings = Booking.objects.all()
@@ -16,18 +18,18 @@ def book_room(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         surname = request.POST.get('surname')
-        check_in = request.POST.get('check_in')
-        check_out = request.POST.get('check_out')
+        check_in_str = request.POST.get('check_in')
+        check_out_str = request.POST.get('check_out')
+        check_in = datetime.strptime(check_in_str, '%Y-%m-%dT%H:%M')
+        check_out = datetime.strptime(check_out_str, '%Y-%m-%dT%H:%M')
         phone_number = request.POST.get('phone_number')
         room_type_id = request.POST.get('room_type')
         place_id = request.POST.get('place')
         hotel_id = request.POST.get('hotel')
 
-        selected_room = get_object_or_404(Rooms, pk=room_type_id)
-        room_price = selected_room.get_room_price()
+        # selected_room = get_object_or_404(Rooms, pk=room_type_id)
 
         booking = Booking(
-            
             name=name,
             surname=surname,
             check_in=check_in,
@@ -36,8 +38,10 @@ def book_room(request):
             room_type_id=room_type_id,
             place_id=place_id,
             hotel_id=hotel_id,
-            price=room_price,
         )
+
+        booking.calculate_total_price()
+
         booking.save()
 
 

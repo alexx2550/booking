@@ -74,3 +74,13 @@ class Booking(models.Model):
 
     def __str__(self):
         return f'{self.name} {self.surname}'
+
+    def calculate_total_price(self):
+        if self.check_in and self.check_out and self.room_type:
+            duration = (self.check_out - self.check_in).days
+            room_price = self.room_type.get_room_price()
+            total_price = room_price * duration
+            self.price = total_price
+            self.save()
+
+        return self.price
