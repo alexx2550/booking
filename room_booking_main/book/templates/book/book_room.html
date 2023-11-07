@@ -8,6 +8,8 @@
     <h1 style="text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 230%;">Book New Room</h1><br><br>
     <form method="post">
         {% csrf_token %}
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;"><strong>Single - 150$<br>Double - 280$<br>Deluxe - 400$<br>Presidental - 750$</strong></p>
+        <hr>
         <br><label style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;" for="place">Location:</label>
         <select name="place" required>
             {% for place in place_choices %}
@@ -25,7 +27,7 @@
             {% for room in room_choices %}
                 <option value="{{ room.id }}">{{ room.room_type }}</option>
             {% endfor %}
-        </select><br><br>
+        </select><br><br>   
         <label style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;" for="check_in">Check in Date:</label>
         <input type="datetime-local" name="check_in" required><br><br>
         <label style="font-family: Arial, Helvetica, sans-serif; font-size: 150%;" for="check_out">Check out Date:</label>
