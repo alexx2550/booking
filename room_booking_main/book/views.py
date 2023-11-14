@@ -27,7 +27,6 @@ def book_room(request):
         place_id = request.POST.get('place')
         hotel_id = request.POST.get('hotel')
 
-        # selected_room = get_object_or_404(Rooms, pk=room_type_id)
 
         booking = Booking(
             name=name,
